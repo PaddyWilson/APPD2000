@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="txt0">0</string>
+    <string name="txt1">1</string>
+    <string name="txt2">2</string>
+    <string name="txt3">3</string>
+    <string name="txt4">4</string>
+    <string name="txt5">5</string>
+    <string name="txt6">6</string>
+    <string name="txt7">7</string>
+    <string name="txt8">8</string>
+    <string name="txt9">9</string>
+    <string name="txtDot">.</string>
+    <string name="txtDivide">/</string>
+    <string name="txtMult">*</string>
+    <string name="txtSub">-</string>
+    <string name="txtAdd">+</string>
+    <string name="txtNegPos">+/-</string>
+    <string name="txtEquials">=</string>
+    <string name="txtBack">Back</string>
+    <string name="txtClear">Clear</string>
+</resources>
