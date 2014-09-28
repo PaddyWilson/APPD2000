@@ -17,8 +17,8 @@ public class MyActivity extends Activity {
 
     int select = 0;//1=divide, 2=multiply, 3=add, 4=subtract
 
-    double number1;
-    double number2;
+    double number1 = 0;
+    double number2 = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -172,7 +172,7 @@ public class MyActivity extends Activity {
             @Override
             public void onClick(View view) {
                 getNumber();
-                edtDisplay.setText(Double.toString(math(number1, number2)));
+                edtDisplay.setText(Double.toString(math()));
                 select = 0;
             }
         });
@@ -197,6 +197,7 @@ public class MyActivity extends Activity {
 
     void clearText()
     {
+        select = 0;
         edtDisplay.setText("");
     }
 
@@ -217,7 +218,7 @@ public class MyActivity extends Activity {
         return (s != null && s.length() != 0) ? s.substring(0, s.length()-1): s;
     }
 
-    double math(double number1, double number2)
+    double math()
     {
         Log.w("Number 1", Double.toString(number1));
         Log.w("Number 2", Double.toString(number2));
