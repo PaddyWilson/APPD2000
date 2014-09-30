@@ -20,6 +20,11 @@ public class MyActivity extends Activity {
     double number1 = 0;
     double number2 = 0;
 
+    int divCount = 0;
+    int multCount = 0;
+    int addCount = 0;
+    int subCount = 0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +119,16 @@ public class MyActivity extends Activity {
         btnDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                logWriteVar();
+                logWrite("Divide pushed");
                 getNumber();
+
+                if (select > 0)
+                {
+                    logWrite("Divide pushed 2");
+                    number2 = mathEnter();
+                }
+
                 clearText();
                 select = 1;
             }
@@ -123,7 +137,15 @@ public class MyActivity extends Activity {
         btnMult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                logWriteVar();
+                logWrite("Mult pushed");
                 getNumber();
+
+                if (select > 0)
+                {
+                    logWrite("Mult pushed 2");
+                   number2 = mathEnter();
+                }
                 clearText();
                 select = 2;
             }
@@ -132,7 +154,15 @@ public class MyActivity extends Activity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                logWriteVar();
+                logWrite("Add Pushed");
                 getNumber();
+
+                if (select > 0)
+                {
+                    logWrite("Add Pushed 2");
+                    number2 = mathEnter();
+                }
                 clearText();
                 select = 3;
             }
@@ -141,7 +171,15 @@ public class MyActivity extends Activity {
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                logWriteVar();
+                logWrite("Sub Pushed");
                 getNumber();
+
+                if (select > 0)
+                {
+                    logWrite("Sub Pushed 2");
+                    number2 = mathEnter();
+                }
                 clearText();
                 select = 4;
             }
@@ -172,7 +210,8 @@ public class MyActivity extends Activity {
             @Override
             public void onClick(View view) {
                 getNumber();
-                edtDisplay.setText(Double.toString(math()));
+                logWriteVar();
+                edtDisplay.setText(Double.toString(mathEnter()));
                 select = 0;
             }
         });
@@ -190,6 +229,8 @@ public class MyActivity extends Activity {
             @Override
             public void onClick(View view) {
                 clearText();
+                number1 = 0;
+                number2 = 0;
             }
         });
 
@@ -218,10 +259,10 @@ public class MyActivity extends Activity {
         return (s != null && s.length() != 0) ? s.substring(0, s.length()-1): s;
     }
 
-    double math()
+    double mathEnter()
     {
-        Log.w("Number 1", Double.toString(number1));
-        Log.w("Number 2", Double.toString(number2));
+        //Log.w("Number 1", Double.toString(number1));
+        //Log.w("Number 2", Double.toString(number2));
 
         double i = 0;
         Math math = new Math();
@@ -244,8 +285,19 @@ public class MyActivity extends Activity {
         {
             i = math.subtract(number1, number2);
         }
+        //select = 0;
         return i;
     }
 
+    public void logWrite(String write)
+    {
+        Log.w("", write);
+    }
+    void logWriteVar()
+    {
+        Log.w("Number 1 ", Double.toString(number1));
+        Log.w("Number 2 ", Double.toString(number2));
+        Log.w("Select ", Integer.toString(select));
+    }
 
 }
