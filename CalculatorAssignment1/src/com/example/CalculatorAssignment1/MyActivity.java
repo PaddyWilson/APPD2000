@@ -126,7 +126,7 @@ public class MyActivity extends Activity {
                 if (select > 0)
                 {
                     logWrite("Divide pushed 2");
-                    number2 = mathEnter();
+                    number2 = Double.parseDouble(mathEnter());
                 }
 
                 clearText();
@@ -144,7 +144,7 @@ public class MyActivity extends Activity {
                 if (select > 0)
                 {
                     logWrite("Mult pushed 2");
-                   number2 = mathEnter();
+                    number2 = Double.parseDouble(mathEnter());
                 }
                 clearText();
                 select = 2;
@@ -161,7 +161,7 @@ public class MyActivity extends Activity {
                 if (select > 0)
                 {
                     logWrite("Add Pushed 2");
-                    number2 = mathEnter();
+                    number2 = Double.parseDouble(mathEnter());
                 }
                 clearText();
                 select = 3;
@@ -178,7 +178,7 @@ public class MyActivity extends Activity {
                 if (select > 0)
                 {
                     logWrite("Sub Pushed 2");
-                    number2 = mathEnter();
+                    number2 = Double.parseDouble(mathEnter());
                 }
                 clearText();
                 select = 4;
@@ -211,7 +211,7 @@ public class MyActivity extends Activity {
             public void onClick(View view) {
                 getNumber();
                 logWriteVar();
-                edtDisplay.setText(Double.toString(mathEnter()));
+                edtDisplay.setText(mathEnter());
                 select = 0;
             }
         });
@@ -244,6 +244,18 @@ public class MyActivity extends Activity {
 
     void getNumber()
     {
+        if (edtDisplay.getText().toString().contains("NaN"))
+            edtDisplay.setText(edtDisplay.getText().toString().substring(3));
+        else if (edtDisplay.getText().toString().contains("Na"))
+            edtDisplay.setText(edtDisplay.getText().toString().substring(2));
+        else if (edtDisplay.getText().toString().contains("N"))
+            edtDisplay.setText(edtDisplay.getText().toString().substring(1));
+
+        if  (edtDisplay.getText().toString().equals("."))
+            edtDisplay.setText("0");
+
+        logWrite(edtDisplay.getText().toString());
+
         if (!edtDisplay.getText().toString().equals("") && select != 0)
         {
             number1 = Double.parseDouble(edtDisplay.getText().toString());
@@ -259,32 +271,38 @@ public class MyActivity extends Activity {
         return (s != null && s.length() != 0) ? s.substring(0, s.length()-1): s;
     }
 
-    double mathEnter()
+    String mathEnter()
     {
         //Log.w("Number 1", Double.toString(number1));
         //Log.w("Number 2", Double.toString(number2));
 
-        double i = 0;
+        String i = "";
         Math math = new Math();
         if (select == 1)
         {
             if (number1 == 0 || number2 == 0)
-                edtDisplay.setText("Can't divide my 0");
+            {
+                logWrite("Divide Zero");
+                 i = "NaN";
+            }
             else
-                i = math.divide(number1, number2);
+                i = Double.toString(math.divide(number1, number2));
         }
         else if (select == 2)
         {
-            i = math.multiply(number1, number2);
+            i = Double.toString(math.multiply(number1, number2));
         }
         else if (select == 3)
         {
-            i = math.add(number1, number2);
+            i = Double.toString(math.add(number1, number2));
         }
         else if (select == 4)
         {
-            i = math.subtract(number1, number2);
+            i = Double.toString(math.subtract(number1, number2));
         }
+        else if (select == 0)
+            i = Double.toString(number2);
+
         //select = 0;
         return i;
     }
