@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:baselineAligned="false" android:shrinkColumns="1,2,3,4," android:stretchColumns="1,2,3,4,">
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/edtEnterName"
+            android:layout_marginTop="151dp"
+            android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:id="@+id/btnSubmit"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/edtEnterName" android:layout_centerHorizontal="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enterName"
+            android:id="@+id/txvEnterName"
+            android:layout_marginBottom="71dp"
+            android:layout_alignBottom="@+id/edtEnterName" android:layout_centerHorizontal="true"/>
+</RelativeLayout>
+

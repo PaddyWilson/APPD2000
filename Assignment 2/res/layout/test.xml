@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/score"
+                android:id="@+id/txtScore" android:layout_column="0" android:layout_marginRight="1dp"
+                android:layout_margin="1dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/txtYourScore" android:layout_column="1" android:layout_marginRight="1dp"
+                android:layout_margin="1dp"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/txtQuestion" android:layout_column="0" android:layout_marginRight="1dp"
+                android:layout_margin="1dp"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" android:layout_column="0">
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New RadioButton"
+                    android:id="@+id/rbAnswer1" android:layout_column="0" android:layout_span="2"
+                    android:layout_marginRight="1dp" android:layout_margin="1dp"/>
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New RadioButton"
+                    android:id="@+id/rbAnswer2" android:layout_column="0" android:checked="false" android:layout_span="2"
+                    android:layout_marginRight="1dp" android:layout_margin="1dp"/>
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New RadioButton"
+                    android:id="@+id/rbAnswer3" android:layout_column="0" android:checked="false" android:layout_span="2"
+                    android:layout_marginRight="1dp" android:layout_margin="1dp"/>
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New RadioButton"
+                    android:id="@+id/rbAnswer4" android:layout_column="0" android:checked="false" android:layout_span="2"
+                    android:layout_marginRight="1dp" android:layout_margin="1dp"/>
+        </RadioGroup>
+    </TableRow>
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next"
+                android:id="@+id/btnNext" android:layout_column="0" android:layout_span="2"/>
+    </TableRow>
+</TableLayout>
