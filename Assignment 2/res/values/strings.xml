@@ -3,6 +3,10 @@
     <string name="app_name">Assignment 2</string>
     <string name="enterName">Enter You Name</string>
     <string name="submit">Submit</string>
-    <string name="score">Your score is</string>
+    <string name="score">Your score is:</string>
     <string name="next">Next</string>
+    <string name="name">Name:</string>
+    <string name="question">Question:</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
 </resources>
