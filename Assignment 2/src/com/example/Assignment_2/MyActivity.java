@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MyActivity extends Activity {
 
@@ -48,8 +50,8 @@ public class MyActivity extends Activity {
 
     }
 
-    void writeLog(String text)
+    private void writeLog(String text)
     {
-        Log.d("Debug", text);
+        Log.d("MyActivity Debug", text);
     }
 }
