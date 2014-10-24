@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Assignment 2</string>
+    <string name="app_name">Quiz</string>
     <string name="enterName">Enter You Name</string>
     <string name="submit">Submit</string>
     <string name="score">Your score is:</string>
@@ -9,4 +9,5 @@
     <string name="question">Question:</string>
     <string name="correct">Correct</string>
     <string name="incorrect">Incorrect</string>
+    <string name="finalScore">Your Score is</string><string name="newGame">New Game</string>
 </resources>
