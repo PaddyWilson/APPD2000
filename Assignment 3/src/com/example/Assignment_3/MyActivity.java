@@ -1,6 +1,7 @@
 package com.example.Assignment_3;
 
-import android.app.Activity;
+import android.app.*;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -8,14 +9,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import static com.example.Assignment_3.R.*;
 
 public class MyActivity extends Activity implements OnItemClickListener {
 
@@ -24,6 +24,9 @@ public class MyActivity extends Activity implements OnItemClickListener {
     public static final String MAIN_ACTIVITY= "Main Activity";//for logcat
     ListView listView;
     ArrayList<String> movies = new ArrayList<String>();
+    //HashMap<String, String> movies2 = new HashMap<String, String>();
+
+    Intent i;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,11 +66,12 @@ public class MyActivity extends Activity implements OnItemClickListener {
         if (c.moveToFirst()) {
             do {
                 movies.add(c.getString(1));
+                //movies2.put(c.getString(0), c.getString(1));
             } while (c.moveToNext());
         }
 
         Log.w(MAIN_ACTIVITY, "ListView Things");
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(id.listView);
         listView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies));
 
         listView.setOnItemClickListener(this);
@@ -77,6 +81,11 @@ public class MyActivity extends Activity implements OnItemClickListener {
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Log.w(MAIN_ACTIVITY, "Item Clicked = " + movies.get(i));
+
+        this.i = new Intent(MyActivity.this, MovieInfo.class);
+        this.i.putExtra("i", i + 1);
+        startActivity(this.i);
+
         Toast.makeText(this, "Item clicked" + movies.get(i), Toast.LENGTH_LONG);
     }
 
@@ -87,7 +96,7 @@ public class MyActivity extends Activity implements OnItemClickListener {
                         ", Title: " + c.getString(1) +
                         ", Trailer: " + c.getString(2) +
                         ", Image: " + c.getString(3) +
-                        ", Rating: " + c.getString(4) +
+                        ", Rating: " + c.getInt(4) +
                         ", Description: " + c.getString(5));
     }
 
@@ -111,15 +120,15 @@ public class MyActivity extends Activity implements OnItemClickListener {
         DBAdapter db = new DBAdapter(this);
         db.open();
         //title, trailer, image, rating, description
-        long id = db.insertMovie("Ghost Rider", "Ghost_Rider", "Ghost_Rider", "10", "Ghost_Rider");
-        id = db.insertMovie("Ghost Rider 2", "Ghost_Rider_2", "Ghost_Rider_2", "10", "Ghost_Rider_2");
-        id = db.insertMovie("Gone In 60 Seconds", "Gone_In_60_Seconds", "Gone_In_60_Seconds", "10", "Gone_In_60_Seconds");
-        id = db.insertMovie("Drive Angry", "Drive_Angry", "Drive_Angry", "10", "Who Does not want to Drive Angry?");
-        id = db.insertMovie("Joe", "Joe", "Joe", "10", "Joe");
-        id = db.insertMovie("National Treasure", "National_Treasure", "National_Treasure", "10", "National_Treasure");
-        id = db.insertMovie("National Treasure 2", "National_Treasure_2", "National_Treasure_2", "10", "National_Treasure_2");
-        id = db.insertMovie("Seeking Justice", "Seeking_Justice", "Seeking_Justice", "10", "Seeking_Justice");
-        id = db.insertMovie("The Wicker Man", "The_Wicker_Man", "The_Wicker_Man", "10", "The_Wicker_Man");
+        long id = db.insertMovie("Ghost Rider", "ghost_rider", "ghost_rider", "5", "Nicolas Cage in Ghost Rider");
+        id = db.insertMovie("Ghost Rider 2", "ghost_rider_2", "ghost_rider_2", "5", "Nicolas Cage in Ghost Rider 2");
+        id = db.insertMovie("Gone In 60 Seconds", "gone_in_60_seconds", "gone_in_60_seconds", "5", "Nicolas Cage in Gone In 60 Seconds");
+        id = db.insertMovie("Drive Angry", "drive_angry", "drive_angry", "4", "Who Does not want to Drive Angry? Also Nicolas Cage IS IN IT!!!!");
+        id = db.insertMovie("Joe", "joe", "joe", "1.5", "Nicolas Cage in Joe");
+        id = db.insertMovie("National Treasure", "national_treasure", "national_treasure", "0", "Nicolas Cage in National Treasure");
+        id = db.insertMovie("National Treasure 2", "national_treasure_2", "national_treasure_2", "3", "Nicolas Cage in National Treasure 2");
+        id = db.insertMovie("Seeking Justice", "seeking_justice", "seeking_justice", "5", "Nicolas Cage in Seeking Justice");
+        id = db.insertMovie("The Wicker Man", "the_wicker_man", "the_wicker_man", "4", "Nicolas Cage in The Wicker Man");
         db.close();
     }
 

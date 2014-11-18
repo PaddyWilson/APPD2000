@@ -29,7 +29,7 @@ public class DBAdapter {
 //            rating text not null,
 //            description text not null);
 //
-//    insert into movies values(1, \"Drive Angry", \"Drive_Angry", \"Drive_Angry", \"10", \"Who Does not want to Drive Angry?");
+//    insert into movies values(1, \"Drive Angry", \"drive_angry", \"drive_angry", \"10", \"Who Does not want to Drive Angry?");
 //    insert into movies values(2, \"Ghost Rider", \"Ghost_Rider", \"Ghost_Rider", \"10", \"Ghost_Rider");
 //    insert into movies values(3, \"Ghost Rider 2", \"Ghost_Rider_2", \"Ghost_Rider_2", \"10", \"Ghost_Rider_2");
 //    insert into movies values(4, \"Gone In 60 Seconds", \"Gone_In_60_Seconds", \"Gone_In_60_Seconds", \"10", \"Gone_In_60_Seconds");

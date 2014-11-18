@@ -19,7 +19,6 @@ import java.util.Iterator;
 
 public class test extends Activity {
 
-
     public class Quiz
     {
         private ArrayList<ArrayList<String>> arrayListOfArrayLists = new ArrayList<ArrayList<String>>();//holds questions and possible answers
@@ -88,7 +87,7 @@ public class test extends Activity {
             ArrayList<String> questions = new ArrayList<String>();
             questions.addAll(arrayListOfArrayLists.get(currentQuestion).subList(1, 6));
             currentAnswer = answers.get(arrayListOfArrayLists.get(currentQuestion).get(0));
-            writeToLog(currentAnswer);
+            writeToLog("Answer To Current Question: " + currentAnswer);
             return questions;
         }
 
@@ -171,8 +170,7 @@ public class test extends Activity {
     }
     //end of quiz class
 
-
-
+    //*********************************************************************************************************
     Quiz quiz;
 
     //controls
@@ -206,7 +204,7 @@ public class test extends Activity {
 
         question = quiz.nextQuestion();
 
-        printQuizToLog();
+        //printQuizToLog();
 
         updateScore();
         updateQuestionNumber();

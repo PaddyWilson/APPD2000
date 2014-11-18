@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Assignment 3</string>
+    <string name="rating">Rating</string>
+    <string name="description">Description</string>
 </resources>

@@ -20,11 +20,6 @@ public class MyActivity extends Activity {
     double number1 = 0;
     double number2 = 0;
 
-    int divCount = 0;
-    int multCount = 0;
-    int addCount = 0;
-    int subCount = 0;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -242,8 +237,10 @@ public class MyActivity extends Activity {
         edtDisplay.setText("");
     }
 
+    //gets the entered number and stores it in the correct variable
     void getNumber()
     {
+        //removes the NaN if the user did not clear the screan before entering numbers
         if (edtDisplay.getText().toString().contains("NaN"))
             edtDisplay.setText(edtDisplay.getText().toString().substring(3));
         else if (edtDisplay.getText().toString().contains("Na"))
@@ -251,10 +248,12 @@ public class MyActivity extends Activity {
         else if (edtDisplay.getText().toString().contains("N"))
             edtDisplay.setText(edtDisplay.getText().toString().substring(1));
 
+        //if there is just a dot return 0
         if  (edtDisplay.getText().toString().equals("."))
             edtDisplay.setText("0");
 
-        logWrite(edtDisplay.getText().toString());
+        //logWrite(edtDisplay.getText().toString());
+
 
         if (!edtDisplay.getText().toString().equals("") && select != 0)
         {
@@ -266,23 +265,25 @@ public class MyActivity extends Activity {
         }
     }
 
+    //removes the last charater from the supplied string
     public String removeLastChar(String s)
     {
-        return (s != null && s.length() != 0) ? s.substring(0, s.length()-1): s;
+        if (s != null && s.length() > 0) {
+           return s.substring(0, s.length() - 1);
+        }
+        return s;
     }
 
+    //calculates things
     String mathEnter()
     {
-        //Log.w("Number 1", Double.toString(number1));
-        //Log.w("Number 2", Double.toString(number2));
-
         String i = "";
         Math math = new Math();
         if (select == 1)
         {
             if (number1 == 0 || number2 == 0)
             {
-                logWrite("Divide Zero");
+                //logWrite("Divide Zero");
                  i = "NaN";
             }
             else
@@ -307,10 +308,12 @@ public class MyActivity extends Activity {
         return i;
     }
 
+    //writes to logcat
     public void logWrite(String write)
     {
         Log.w("", write);
     }
+    //writes global vars to logcat
     void logWriteVar()
     {
         Log.w("Number 1 ", Double.toString(number1));
