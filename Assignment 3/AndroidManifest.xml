@@ -13,5 +13,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MovieInfo"/>
+        <activity android:name=".Video"/>
+        <activity android:name=".EditMovieInfo"/>
     </application>
 </manifest> 

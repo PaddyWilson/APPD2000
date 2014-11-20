@@ -2,5 +2,11 @@
 <resources>
     <string name="app_name">Assignment 3</string>
     <string name="rating">Rating</string>
+    <string name="Play">Play Video</string>
     <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="newMovie">New Movie</string>
+    <string name="save">Save Movie</string>
+
+    <string name="toast_title">Show toast message</string>
 </resources>

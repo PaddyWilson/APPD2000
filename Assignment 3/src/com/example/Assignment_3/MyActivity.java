@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
@@ -78,6 +79,23 @@ public class MyActivity extends Activity implements OnItemClickListener {
         Log.w(MAIN_ACTIVITY, "End");
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit:
+                Intent i = new Intent(MyActivity.this, EditMovieInfo.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Log.w(MAIN_ACTIVITY, "Item Clicked = " + movies.get(i));
@@ -85,8 +103,7 @@ public class MyActivity extends Activity implements OnItemClickListener {
         this.i = new Intent(MyActivity.this, MovieInfo.class);
         this.i.putExtra("i", i + 1);
         startActivity(this.i);
-
-        Toast.makeText(this, "Item clicked" + movies.get(i), Toast.LENGTH_LONG);
+        //Toast.makeText(this, "Item clicked" + movies.get(i), Toast.LENGTH_LONG);
     }
 
     //displaces database info to logcat
@@ -100,35 +117,20 @@ public class MyActivity extends Activity implements OnItemClickListener {
                         ", Description: " + c.getString(5));
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        // getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return true;
-    }
-
     private void firstRun()
     {
         DBAdapter db = new DBAdapter(this);
         db.open();
         //title, trailer, image, rating, description
-        long id = db.insertMovie("Ghost Rider", "ghost_rider", "ghost_rider", "5", "Nicolas Cage in Ghost Rider");
-        id = db.insertMovie("Ghost Rider 2", "ghost_rider_2", "ghost_rider_2", "5", "Nicolas Cage in Ghost Rider 2");
-        id = db.insertMovie("Gone In 60 Seconds", "gone_in_60_seconds", "gone_in_60_seconds", "5", "Nicolas Cage in Gone In 60 Seconds");
-        id = db.insertMovie("Drive Angry", "drive_angry", "drive_angry", "4", "Who Does not want to Drive Angry? Also Nicolas Cage IS IN IT!!!!");
-        id = db.insertMovie("Joe", "joe", "joe", "1.5", "Nicolas Cage in Joe");
-        id = db.insertMovie("National Treasure", "national_treasure", "national_treasure", "0", "Nicolas Cage in National Treasure");
-        id = db.insertMovie("National Treasure 2", "national_treasure_2", "national_treasure_2", "3", "Nicolas Cage in National Treasure 2");
-        id = db.insertMovie("Seeking Justice", "seeking_justice", "seeking_justice", "5", "Nicolas Cage in Seeking Justice");
-        id = db.insertMovie("The Wicker Man", "the_wicker_man", "the_wicker_man", "4", "Nicolas Cage in The Wicker Man");
+        long id = db.insertMovie("Ghost Rider", "ghost_rider.mp4", "ghost_rider.png", "5", "Nicolas Cage in Ghost Rider");
+        id = db.insertMovie("Ghost Rider 2", "ghost_rider_2.mp4", "ghost_rider_2.png", "5", "Nicolas Cage in Ghost Rider 2");
+        id = db.insertMovie("Gone In 60 Seconds", "gone_in_60_seconds.mp4", "gone_in_60_seconds.png", "5", "Nicolas Cage in Gone In 60 Seconds");
+        id = db.insertMovie("Drive Angry", "drive_angry.mp4", "drive_angry.png", "4", "Who Does not want to Drive Angry? Also Nicolas Cage IS IN IT!!!!");
+        id = db.insertMovie("Joe", "joe.mp4", "joe.png", "1.5", "Nicolas Cage in Joe");
+        id = db.insertMovie("National Treasure", "national_treasure.mp4", "national_treasure.png", "0", "Nicolas Cage in National Treasure");
+        id = db.insertMovie("National Treasure 2", "national_treasure_2.mp4", "national_treasure_2.png", "3", "Nicolas Cage in National Treasure 2");
+        id = db.insertMovie("Seeking Justice", "seeking_justice.mp4", "seeking_justice.png", "5", "Nicolas Cage in Seeking Justice");
+        id = db.insertMovie("The Wicker Man", "the_wicker_man.mp4", "the_wicker_man.png", "4", "Nicolas Cage in The Wicker Man");
         db.close();
     }
 

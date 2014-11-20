@@ -37,7 +37,8 @@
         <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ratingBar" android:focusable="false"/>
+                android:id="@+id/ratingBar"
+                android:focusable="false" android:numStars="5"/>
     </TableRow>
     <TableRow
             android:layout_width="fill_parent"
@@ -58,5 +59,14 @@
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/editText" android:layout_span="2" android:focusable="false"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Play"
+                android:id="@+id/btnPlay" android:layout_column="0"/>
     </TableRow>
 </TableLayout>
