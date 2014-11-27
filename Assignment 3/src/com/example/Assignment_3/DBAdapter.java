@@ -64,9 +64,12 @@ public class DBAdapter {
         }
 
         public void onCreate(SQLiteDatabase db) {
+            Log.w(TAG, "Create database");
             try {
+                Log.w(TAG, "Create database yes");
                 db.execSQL(DATABASE_CREATE);
             } catch (SQLException e) {
+                Log.w(TAG, "Create database faled");
                 e.printStackTrace();
             }
         }//end method onCreate
@@ -92,6 +95,7 @@ public class DBAdapter {
 
     //retrieve all the Movies
     public Cursor getAllMovies() {
+
         return db.query(DATABASE_TABLE, new String[]{KEY_ROW_ID, KEY_MOVIE_TITLE, KEY_MOVIE_TRAILER,
                 KEY_MOVIE_IMAGE, KEY_MOVIE_RATING, KEY_MOVIE_DESCRIPTION}, null, null, null, null, null);
     }

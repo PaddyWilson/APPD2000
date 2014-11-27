@@ -69,7 +69,7 @@ public class MovieInfo extends Activity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MovieInfo.this, Video.class);
-                i.putExtra("video", "/assets/trailer/" + c.getString(2));
+                i.putExtra("video", c.getString(2));
                 startActivity(i);
             }
         });
