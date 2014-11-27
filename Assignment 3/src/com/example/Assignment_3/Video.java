@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -15,27 +17,46 @@ public class Video extends Activity {
     private final String TAG = "Video Activity";
 
     VideoView videoView;
+    Button play, pause, stop;
     String video;
-    String SrcPath = "rtsp://v5.cache1.c.youtube.com/CjYLENy73wIaLQnhycnrJQ8qmRMYESARFEIJbXYtZ29vZ2xlSARSBXdhdGNoYPj_hYjnq6uUTQw=/0/0/0/video.3gp";//test video
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video);
 
-//        VideoView myVideoView = (VideoView)findViewById(R.id.myvideoview);
-//        myVideoView.setVideoURI(Uri.parse(SrcPath));
-//        myVideoView.setMediaController(new MediaController(this));
-//        myVideoView.requestFocus();
-//        myVideoView.start();
-
         Bundle bundle = getIntent().getExtras();
         video = bundle.getString("video");
         Log.w(TAG, video);
-        videoView = (VideoView) findViewById(R.id.myvideoview);
+
+        videoView = (VideoView) findViewById(R.id.videoView);
+        play = (Button) findViewById(R.id.btnPlay);
+        pause = (Button) findViewById(R.id.btnPause);
+        stop = (Button) findViewById(R.id.btnStop);
 
         videoView.setVideoURI(Uri.parse("android.resource://"+  getPackageName() + "/raw/" + video));
         videoView.setMediaController(new MediaController(this));
         videoView.requestFocus();
         videoView.start();
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoView.start();
+            }
+        });
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoView.pause();
+            }
+        });
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
     }
 }

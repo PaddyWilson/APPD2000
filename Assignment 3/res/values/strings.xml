@@ -9,4 +9,8 @@
     <string name="save">Save Movie</string>
     <string name="delete">Delete Movie</string>
     <string name="toast_title">Show toast message</string>
+
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="stop">Stop</string>
 </resources>
