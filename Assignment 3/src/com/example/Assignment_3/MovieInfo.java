@@ -24,7 +24,7 @@ public class MovieInfo extends Activity {
     RatingBar rating;
     EditText description;
     ImageView image;
-    Button play;
+    Button play, delete;
 
     long index;
     Cursor c;
@@ -46,6 +46,7 @@ public class MovieInfo extends Activity {
         description = (EditText) findViewById(R.id.editText);
         image = (ImageView) findViewById(R.id.imageView);
         play = (Button) findViewById(R.id.btnPlay);
+        delete = (Button) findViewById(R.id.btnDelete);
 
         Log.w(MOVIE_ACTIVITY, "Connect to  DB");
         db = new DBAdapter(this);
@@ -70,6 +71,15 @@ public class MovieInfo extends Activity {
                 Intent i = new Intent(MovieInfo.this, Video.class);
                 i.putExtra("video", "/assets/trailer/" + c.getString(2));
                 startActivity(i);
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.open();
+                db.deleteMovie(index);
+                db.close();
+                finish();
             }
         });
         rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {

@@ -7,6 +7,6 @@
     <string name="title">Title</string>
     <string name="newMovie">New Movie</string>
     <string name="save">Save Movie</string>
-
+    <string name="delete">Delete Movie</string>
     <string name="toast_title">Show toast message</string>
 </resources>

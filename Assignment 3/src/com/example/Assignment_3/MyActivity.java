@@ -14,7 +14,6 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.example.Assignment_3.R.*;
 
@@ -24,7 +23,9 @@ public class MyActivity extends Activity implements OnItemClickListener {
 
     public static final String MAIN_ACTIVITY= "Main Activity";//for logcat
     ListView listView;
-    ArrayList<String> movies = new ArrayList<String>();
+    ArrayList<String> movieTitles = new ArrayList<String>();
+    ArrayList<String> movieId = new ArrayList<String>();
+
     //HashMap<String, String> movies2 = new HashMap<String, String>();
 
     Intent i;
@@ -67,7 +68,6 @@ public class MyActivity extends Activity implements OnItemClickListener {
         movie();
     }
 
-
     public void movie()
     {
         Log.w(MAIN_ACTIVITY, "New DBAdapter");
@@ -86,24 +86,23 @@ public class MyActivity extends Activity implements OnItemClickListener {
         Log.w(MAIN_ACTIVITY, "Close DB connection");
         db.close();
 
-        movies.clear();
+        movieTitles.clear();//clears the array to be populated again
+        movieId.clear();//clears the movie ids from the array
         if (c.moveToFirst()) {
             do {
-                movies.add(c.getString(1));
+                movieTitles.add(c.getString(1));
+                movieId.add(Long.toString(c.getLong(0)));
                 //movies2.put(c.getString(0), c.getString(1));
             } while (c.moveToNext());
         }
 
         Log.w(MAIN_ACTIVITY, "ListView Things");
-
-
-
-
-        listView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies));
+        listView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, movieTitles));
 
         //listView.setOnItemClickListener(this);
     }
 
+    //edit menu
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit:
@@ -117,12 +116,14 @@ public class MyActivity extends Activity implements OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.w(MAIN_ACTIVITY, "Item Clicked = " + movies.get(i));
+        Log.w(MAIN_ACTIVITY, "Item Clicked = " + movieId.get(i));
+
+
 
         this.i = new Intent(MyActivity.this, MovieInfo.class);
-        this.i.putExtra("i", i + 1);
+        this.i.putExtra("i", Integer.parseInt(movieId.get(i)));
         startActivity(this.i);
-        //Toast.makeText(this, "Item clicked" + movies.get(i), Toast.LENGTH_LONG);
+        //Toast.makeText(this, "Item clicked" + movieTitles.get(i), Toast.LENGTH_LONG);
     }
 
     //displaces database info to logcat
@@ -146,10 +147,10 @@ public class MyActivity extends Activity implements OnItemClickListener {
         id = db.insertMovie("Gone In 60 Seconds", "gone_in_60_seconds.mp4", "gone_in_60_seconds.png", "5", "Nicolas Cage in Gone In 60 Seconds");
         id = db.insertMovie("Drive Angry", "drive_angry.mp4", "drive_angry.png", "4", "Who Does not want to Drive Angry? Also Nicolas Cage IS IN IT!!!!");
         id = db.insertMovie("Joe", "joe.mp4", "joe.png", "1.5", "Nicolas Cage in Joe");
-        id = db.insertMovie("National Treasure", "national_treasure.mp4", "national_treasure.png", "0", "Nicolas Cage in National Treasure");
-        id = db.insertMovie("National Treasure 2", "national_treasure_2.mp4", "national_treasure_2.png", "3", "Nicolas Cage in National Treasure 2");
-        id = db.insertMovie("Seeking Justice", "seeking_justice.mp4", "seeking_justice.png", "5", "Nicolas Cage in Seeking Justice");
-        id = db.insertMovie("The Wicker Man", "the_wicker_man.mp4", "the_wicker_man.png", "4", "Nicolas Cage in The Wicker Man");
+//        id = db.insertMovie("National Treasure", "national_treasure.mp4", "national_treasure.png", "0", "Nicolas Cage in National Treasure");
+//        id = db.insertMovie("National Treasure 2", "national_treasure_2.mp4", "national_treasure_2.png", "3", "Nicolas Cage in National Treasure 2");
+//        id = db.insertMovie("Seeking Justice", "seeking_justice.mp4", "seeking_justice.png", "5", "Nicolas Cage in Seeking Justice");
+//        id = db.insertMovie("The Wicker Man", "the_wicker_man.mp4", "the_wicker_man.png", "4", "Nicolas Cage in The Wicker Man");
         db.close();
     }
 
