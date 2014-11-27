@@ -29,6 +29,8 @@ public class MovieInfo extends Activity {
     long index;
     Cursor c;
 
+    DBAdapter db;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_info);
@@ -46,7 +48,7 @@ public class MovieInfo extends Activity {
         play = (Button) findViewById(R.id.btnPlay);
 
         Log.w(MOVIE_ACTIVITY, "Connect to  DB");
-        DBAdapter db = new DBAdapter(this);
+        db = new DBAdapter(this);
         //Cursor c;
         Log.w(MOVIE_ACTIVITY, "Open DB");
         db.open();
@@ -70,12 +72,17 @@ public class MovieInfo extends Activity {
                 startActivity(i);
             }
         });
-//        Uri uri = Uri.parse("/assets/trailer/ghost_rider.mp4");
-//        //Uri uri = Uri.parse("https://www.youtube.com/watch?v=L-WTmTOi0zUs");
-//        videoView.setMediaController(new MediaController(this));
-//        videoView.setVideoURI(uri);
-//        videoView.requestFocus();
-//        videoView.start();
-//        //videoView.setVideoPath("/assets/video/" + c.getString(2) + ".mp4");
+        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                //Cursor c;
+                Log.w(MOVIE_ACTIVITY, "Open DB");
+                db.open();
+                Log.w(MOVIE_ACTIVITY, "Get movie");
+                db.updateMovieRating(index, Float.toString(rating));
+                Log.w(MOVIE_ACTIVITY, "Close DB");
+                db.close();
+            }
+        });
     }
 }

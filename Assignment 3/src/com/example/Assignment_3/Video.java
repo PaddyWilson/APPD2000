@@ -22,7 +22,7 @@ public class Video extends Activity {
 
         videoView = (VideoView) findViewById(R.id.videoView);
 
-        videoView.setVideoPath(video);
+        videoView.setVideoPath("android.resource://com.example.Assignment_3"+video);
         videoView.start();
     }
 }

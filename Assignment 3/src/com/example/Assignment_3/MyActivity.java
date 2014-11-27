@@ -48,6 +48,28 @@ public class MyActivity extends Activity implements OnItemClickListener {
             editor.commit(); // Save all changed settings
         }
 
+        listView = (ListView) findViewById(id.listView);
+        listView.setOnItemClickListener(this);
+        movie();
+
+        Log.w(MAIN_ACTIVITY, "End");
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    protected void onResume()
+    {
+        super.onResume();
+        movie();
+    }
+
+
+    public void movie()
+    {
         Log.w(MAIN_ACTIVITY, "New DBAdapter");
         DBAdapter db = new DBAdapter(this);
 
@@ -64,6 +86,7 @@ public class MyActivity extends Activity implements OnItemClickListener {
         Log.w(MAIN_ACTIVITY, "Close DB connection");
         db.close();
 
+        movies.clear();
         if (c.moveToFirst()) {
             do {
                 movies.add(c.getString(1));
@@ -72,17 +95,13 @@ public class MyActivity extends Activity implements OnItemClickListener {
         }
 
         Log.w(MAIN_ACTIVITY, "ListView Things");
-        listView = (ListView) findViewById(id.listView);
+
+
+
+
         listView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, movies));
 
-        listView.setOnItemClickListener(this);
-        Log.w(MAIN_ACTIVITY, "End");
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
+        //listView.setOnItemClickListener(this);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
