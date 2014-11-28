@@ -110,7 +110,7 @@ public class MyActivity extends Activity implements OnItemClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit:
-                Intent i = new Intent(MyActivity.this, EditMovieInfo.class);
+                Intent i = new Intent(MyActivity.this, NewMovie.class);
                 startActivity(i);
                 return true;
             default:

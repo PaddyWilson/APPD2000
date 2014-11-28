@@ -15,6 +15,7 @@
         </activity>
         <activity android:name=".MovieInfo"/>
         <activity android:name=".Video"/>
-        <activity android:name=".EditMovieInfo"/>
+        <activity android:name=".NewMovie"/>
+        <activity android:name=".imageSelect"/>
     </application>
 </manifest> 
