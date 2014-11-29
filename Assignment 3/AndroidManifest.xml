@@ -17,5 +17,6 @@
         <activity android:name=".Video"/>
         <activity android:name=".NewMovie"/>
         <activity android:name=".imageSelect"/>
+        <activity android:name=".videoSelect"/>
     </application>
 </manifest> 

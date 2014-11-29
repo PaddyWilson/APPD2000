@@ -21,25 +21,6 @@ public class DBAdapter {
     private static final String DATABASE_TABLE = "movie";
     private static final int DATABASE_VERSION = 1;
 
-//    create table movieTitles(
-//            _id integer primary key autoincrement,
-//            title text not null,
-//            trailer text not null,
-//            image text not null,
-//            rating text not null,
-//            description text not null);
-//
-//    insert into movieTitles values(1, \"Drive Angry", \"drive_angry", \"drive_angry", \"10", \"Who Does not want to Drive Angry?");
-//    insert into movieTitles values(2, \"Ghost Rider", \"Ghost_Rider", \"Ghost_Rider", \"10", \"Ghost_Rider");
-//    insert into movieTitles values(3, \"Ghost Rider 2", \"Ghost_Rider_2", \"Ghost_Rider_2", \"10", \"Ghost_Rider_2");
-//    insert into movieTitles values(4, \"Gone In 60 Seconds", \"Gone_In_60_Seconds", \"Gone_In_60_Seconds", \"10", \"Gone_In_60_Seconds");
-//    insert into movieTitles values(5, \"Joe", \"Joe", \"Joe", \"10", \"Joe");
-//    insert into movieTitles values(6, \"National Treasure", \"National_Treasure", \"National_Treasure", \"10", \"National_Treasure");
-//    insert into movieTitles values(7, \"National Treasure 2", \"National_Treasure_2", \"National_Treasure_2", \"10", \"National_Treasure_2");
-//    insert into movieTitles values(8, \"Seeking Justice", \"Seeking_Justice", \"Seeking_Justice", \"10", \"Seeking_Justice");
-//    insert into movieTitles values(9, \"The Wicker Man", \"The_Wicker_Man", \"The_Wicker_Man", \"10", \"The_Wicker_Man");
-
-
     private static final String DATABASE_CREATE =
             "create table movie(" +
                     "_id integer primary key autoincrement," +
@@ -125,17 +106,6 @@ public class DBAdapter {
         initialValues.put(KEY_MOVIE_RATING, rating);
         initialValues.put(KEY_MOVIE_DESCRIPTION, description);
         return db.insert(DATABASE_TABLE, null, initialValues);
-    }
-
-    //updates a Movie
-    public boolean updateMovie(long rowId, String title, String trailer, String image, String rating, String description) {
-        ContentValues values = new ContentValues();
-        values.put(KEY_MOVIE_TITLE, title);
-        values.put(KEY_MOVIE_TRAILER, trailer);
-        values.put(KEY_MOVIE_IMAGE, image);
-        values.put(KEY_MOVIE_RATING, rating);
-        values.put(KEY_MOVIE_DESCRIPTION, description);
-        return db.update(DATABASE_TABLE, values, KEY_ROW_ID + "=" + rowId, null) > 0;
     }
 
     //update movie rating

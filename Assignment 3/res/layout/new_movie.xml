@@ -11,11 +11,15 @@
                 android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:id="@+id/imageView"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/selectImage"
-                android:id="@+id/btnSelectImage" android:layout_column="1"/>
+                android:id="@+id/btnSelectImage"/>
     </TableRow>
     <TableRow
             android:layout_width="fill_parent"
@@ -73,6 +77,15 @@
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/edtDescription" android:layout_column="0"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selectTrailer"
+                android:id="@+id/btnSelectVideo"/>
     </TableRow>
     <TableRow
             android:layout_width="fill_parent"

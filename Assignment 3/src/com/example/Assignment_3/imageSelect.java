@@ -49,21 +49,6 @@ public class imageSelect extends Activity {
         imageId.add("seeking_justice.png");
         imageId.add("the_wicker_man.png");
 
-//        ArrayList<String> temp = new ArrayList<String>();
-//
-//        File dir = new File("/assets/image/");
-//        File[] filelist = dir.listFiles();
-//        Log.w("Image Select", "number " + filelist);
-//
-////        for (File f : filelist)
-////        {
-////            temp.add(filelist.toString());
-////        }
-//
-//        web = new String[temp.size()];
-//        for (int i = 0; i < temp.size(); i++)
-//            web[i] = temp.get(i).toString();
-
         CustomListView adapter = new CustomListView(imageSelect.this, web, imageId);
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
@@ -73,8 +58,7 @@ public class imageSelect extends Activity {
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("selectedImage", imageId.get(position).toString());
                 setResult(Activity.RESULT_OK, resultIntent);
-                finish();
-                //Toast.makeText(imageSelect.this,"You Clicked at " + web.get(+position), Toast.LENGTH_SHORT).show();
+                finish();//return to the previous activity
             }
         });
     }

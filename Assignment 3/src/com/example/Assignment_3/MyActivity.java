@@ -26,10 +26,8 @@ public class MyActivity extends Activity implements OnItemClickListener {
     ArrayList<String> movieTitles = new ArrayList<String>();
     ArrayList<String> movieId = new ArrayList<String>();
 
-    //HashMap<String, String> movies2 = new HashMap<String, String>();
-
     Intent i;
-   DBAdapter db;
+    DBAdapter db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class MyActivity extends Activity implements OnItemClickListener {
 
         //if the app is running for the first time
         if (firstRun) {
-            Log.w(MAIN_ACTIVITY, "first time running");
+            Log.w(MAIN_ACTIVITY, "First Time Running");
             firstRun();
             SharedPreferences.Editor editor = settings.edit(); // Open the editor for our settings
             editor.putBoolean("firstRun", false); // It is no longer the first run
@@ -56,15 +54,8 @@ public class MyActivity extends Activity implements OnItemClickListener {
 
         listView = (ListView) findViewById(id.listView);
         listView.setOnItemClickListener(this);
+
         movie();
-
-        Log.w(MAIN_ACTIVITY, "End");
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
     }
 
     protected void onResume()
@@ -73,10 +64,10 @@ public class MyActivity extends Activity implements OnItemClickListener {
         movie();
     }
 
+    //gets all the movies form the database and remakes the listview
     public void movie()
     {
         Log.w(MAIN_ACTIVITY, "movie()");
-
         Log.w(MAIN_ACTIVITY, "Opening Database");
         db.open();
         Log.w(MAIN_ACTIVITY, "Getting All Movies");
@@ -94,19 +85,23 @@ public class MyActivity extends Activity implements OnItemClickListener {
         movieId.clear();//clears the movie ids from the array
         if (c.moveToFirst()) {
             do {
-                movieTitles.add(c.getString(1));
-                movieId.add(Long.toString(c.getLong(0)));
-                //movies2.put(c.getString(0), c.getString(1));
+                movieTitles.add(c.getString(1));//adds the name to an arraylist
+                movieId.add(Long.toString(c.getLong(0)));//adds the movie id to an arraylist
             } while (c.moveToNext());
         }
 
-        Log.w(MAIN_ACTIVITY, "ListView Things");
+        Log.w(MAIN_ACTIVITY, "Putting Things into listview");
         listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, movieTitles));
-
-        //listView.setOnItemClickListener(this);
     }
 
-    //edit menu
+    //when the menu button is pressed
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    //when new menu is pushed
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit:
@@ -118,13 +113,13 @@ public class MyActivity extends Activity implements OnItemClickListener {
         }
     }
 
+    //what an item in the listview is clicked
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Log.w(MAIN_ACTIVITY, "Item Clicked = " + movieId.get(i));
         this.i = new Intent(MyActivity.this, MovieInfo.class);
         this.i.putExtra("i", Integer.parseInt(movieId.get(i)));
         startActivity(this.i);
-        //Toast.makeText(this, "Item clicked" + movieTitles.get(i), Toast.LENGTH_LONG);
     }
 
     //displaces database info to logcat
@@ -138,6 +133,7 @@ public class MyActivity extends Activity implements OnItemClickListener {
                         ", Description: " + c.getString(5));
     }
 
+    //inserts test data into the database
     private void firstRun()
     {
         Log.w(MAIN_ACTIVITY, "firstRun()");

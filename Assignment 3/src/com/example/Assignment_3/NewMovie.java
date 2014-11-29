@@ -15,13 +15,14 @@ import java.io.InputStream;
  */
 public class NewMovie extends Activity {
 
-    Button save, selectImage;
+    Button save, selectImage, selectTrailer;
     EditText des, title;
     RatingBar rating;
     ImageView imageView;
     DBAdapter db;
 
     String image = "";
+    String video = "";
 
 
     Intent i;
@@ -33,6 +34,7 @@ public class NewMovie extends Activity {
 
         save = (Button) findViewById(R.id.btnSave);
         selectImage = (Button) findViewById(R.id.btnSelectImage);
+        selectTrailer = (Button) findViewById(R.id.btnSelectVideo);
 
         des = (EditText) findViewById(R.id.edtDescription);
         title = (EditText) findViewById(R.id.edtTitle);
@@ -42,20 +44,21 @@ public class NewMovie extends Activity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.w("Edit Movie", "Title: " + title.getText().toString());
-                Log.w("Edit Movie", "Des: " + des.getText().toString());
-                if (!title.getText().toString().equals("") && !des.getText().toString().equals(""))
+                if (title.getText().toString().equals(""))
+                    Toast.makeText(NewMovie.this, "Enter A Title", Toast.LENGTH_SHORT).show();
+                else if(des.getText().toString().equals(""))
+                    Toast.makeText(NewMovie.this, "Enter A Description", Toast.LENGTH_SHORT).show();
+                else if(image.equals(""))
+                    Toast.makeText(NewMovie.this, "Select a image", Toast.LENGTH_SHORT).show();
+                else if(video.equals(""))
+                    Toast.makeText(NewMovie.this, "Select a triler", Toast.LENGTH_SHORT).show();
+                else
                 {
                     Log.w("Edit Movie", "Good data ");
                     db.open();
-                    db.insertMovie(title.getText().toString(), "", image, Float.toString(rating.getRating()), des.getText().toString());
+                    db.insertMovie(title.getText().toString(), video, image, Float.toString(rating.getRating()), des.getText().toString());
                     db.close();
                     finish();
-                }
-                else
-                {
-                    Log.w("Edit Movie", "Bad data");
-                    Toast.makeText(NewMovie.this, "Dont leave anyhitng blank", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -65,6 +68,14 @@ public class NewMovie extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(NewMovie.this, imageSelect.class);
                 startActivityForResult(intent, 1 );
+            }
+        });
+
+        selectTrailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NewMovie.this, videoSelect.class);
+                startActivityForResult(intent, 2 );
             }
         });
 
@@ -79,10 +90,14 @@ public class NewMovie extends Activity {
                 image = pData.getExtras().getString("selectedImage");
                 InputStream is = getClass().getResourceAsStream("/assets/image/"+image);
                 imageView.setImageDrawable(Drawable.createFromStream(is, ""));
-                Log.w("Edit Movie", "Retrieved Value zData is "+image );
-
             }
         }
-
+        if ( requestCode == 2 )
+        {
+            if (resultCode == Activity.RESULT_OK )
+            {
+                video = pData.getExtras().getString("selectedVideo");
+            }
+        }
     }
 }

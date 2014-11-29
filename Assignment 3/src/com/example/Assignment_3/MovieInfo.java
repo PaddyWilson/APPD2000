@@ -32,15 +32,14 @@ public class MovieInfo extends Activity {
     DBAdapter db;
 
     public void onCreate(Bundle savedInstanceState) {
+        Log.w(MOVIE_ACTIVITY, "Start");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_info);
 
-        Log.w(MOVIE_ACTIVITY, "Start");
         Log.w(MOVIE_ACTIVITY, "Getting index");
         Bundle bundle = getIntent().getExtras();
         index = bundle.getInt("i");
 
-        Log.w(MOVIE_ACTIVITY, "Things = Things");
         name = (TextView) findViewById(R.id.txtTitle);
         rating = (RatingBar) findViewById(R.id.ratingBar);
         description = (EditText) findViewById(R.id.editText);
@@ -50,7 +49,6 @@ public class MovieInfo extends Activity {
 
         Log.w(MOVIE_ACTIVITY, "Connect to  DB");
         db = new DBAdapter(this);
-        //Cursor c;
         Log.w(MOVIE_ACTIVITY, "Open DB");
         db.open();
         Log.w(MOVIE_ACTIVITY, "Get movie");
@@ -60,11 +58,14 @@ public class MovieInfo extends Activity {
 
         Log.w(MOVIE_ACTIVITY, "Set text things");
         c.moveToFirst();
-        name.setText(c.getString(1));
+        name.setText(c.getString(1));//
         description.setText(c.getString(5));
-        InputStream is = getClass().getResourceAsStream("/assets/image/"+c.getString(3));
-        image.setImageDrawable(Drawable.createFromStream(is, ""));
+        InputStream is = getClass().getResourceAsStream("/assets/image/"+c.getString(3));//gets the image from the file
+        image.setImageDrawable(Drawable.createFromStream(is, ""));//puts the image into the image view
         rating.setRating((float) Double.parseDouble(c.getString(4)));
+
+        //play button listener
+        //goes to the video activity
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +74,9 @@ public class MovieInfo extends Activity {
                 startActivity(i);
             }
         });
+
+        //delete button listener
+        //deletes the current movie from the database and goes back to previous activity
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +86,9 @@ public class MovieInfo extends Activity {
                 finish();
             }
         });
+
+        //rating bar listener
+        //saves the rating to the database if it has changed
         rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
