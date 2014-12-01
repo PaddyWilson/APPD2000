@@ -17,7 +17,7 @@ public class Video extends Activity {
     private final String TAG = "Video Activity";
 
     VideoView videoView;
-    Button play, pause, stop;
+    Button play, pause, stop, forward, rewind;
     String video;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -32,16 +32,20 @@ public class Video extends Activity {
         play = (Button) findViewById(R.id.btnPlay);
         pause = (Button) findViewById(R.id.btnPause);
         stop = (Button) findViewById(R.id.btnStop);
+        forward = (Button) findViewById(R.id.btnFor);
+        rewind = (Button) findViewById(R.id.btnRev);
 
-        videoView.setVideoURI(Uri.parse("android.resource://"+  getPackageName() + "/raw/" + video));
-        videoView.setMediaController(new MediaController(this));
-        videoView.requestFocus();
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/raw/" + video));
+        //videoView.setMediaController(new MediaController(this));
         videoView.start();
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                videoView.start();
+                if (videoView.isPlaying() == true)
+                    videoView.pause();
+                else
+                    videoView.start();
             }
         });
         pause.setOnClickListener(new View.OnClickListener() {
@@ -53,10 +57,31 @@ public class Video extends Activity {
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                videoView.seekTo(0);
             }
         });
-
+        forward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int duration = videoView.getDuration();
+                int currentPosition = videoView.getCurrentPosition();
+                Log.w("Video", "duration:" + duration + " postion:" + currentPosition);
+                if(currentPosition+10000 >= duration)
+                    videoView.seekTo(duration-10);
+                else
+                    videoView.seekTo(currentPosition+10000);
+            }
+        });
+        rewind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int currentPosition = videoView.getCurrentPosition();
+                if(currentPosition-10000 <= 0)
+                    videoView.seekTo(0);
+                else
+                    videoView.seekTo(currentPosition-10000);
+            }
+        });
 
     }
 }
