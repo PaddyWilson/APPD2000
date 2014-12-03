@@ -109,8 +109,7 @@ public class DBAdapter {
     }
 
     //update movie rating
-    public boolean updateMovieRating(long rowId, String rating)
-    {
+    public boolean updateMovieRating(long rowId, String rating) {
         ContentValues values = new ContentValues();
         values.put(KEY_MOVIE_RATING, rating);
         return db.update(DATABASE_TABLE, values, KEY_ROW_ID + "=" + rowId, null) > 0;

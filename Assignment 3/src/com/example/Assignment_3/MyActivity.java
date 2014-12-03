@@ -1,6 +1,6 @@
 package com.example.Assignment_3;
 
-import android.app.*;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -10,18 +10,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import static com.example.Assignment_3.R.*;
+import static com.example.Assignment_3.R.id;
 
 public class MyActivity extends Activity implements OnItemClickListener {
 
     public static final String PREFS_NAME = "MyPrefsFile";
 
-    public static final String MAIN_ACTIVITY= "Main Activity";//for logcat
+    public static final String MAIN_ACTIVITY = "Main Activity";//for logcat
     ListView listView;
     ArrayList<String> movieTitles = new ArrayList<String>();
     ArrayList<String> movieId = new ArrayList<String>();
@@ -58,15 +60,13 @@ public class MyActivity extends Activity implements OnItemClickListener {
         movie();
     }
 
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         movie();
     }
 
     //gets all the movies form the database and remakes the listview
-    public void movie()
-    {
+    public void movie() {
         Log.w(MAIN_ACTIVITY, "movie()");
         Log.w(MAIN_ACTIVITY, "Opening Database");
         db.open();
@@ -134,8 +134,7 @@ public class MyActivity extends Activity implements OnItemClickListener {
     }
 
     //inserts test data into the database
-    private void firstRun()
-    {
+    private void firstRun() {
         Log.w(MAIN_ACTIVITY, "firstRun()");
         DBAdapter db = new DBAdapter(this);
         db.open();

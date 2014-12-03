@@ -37,7 +37,7 @@ public class CustomListView extends ArrayAdapter<String> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
 
         txtTitle.setText(web.get(position));
-        InputStream is = getClass().getResourceAsStream("/assets/image/"+imageId.get(position));
+        InputStream is = getClass().getResourceAsStream("/assets/image/" + imageId.get(position));
         imageView.setImageDrawable(Drawable.createFromStream(is, ""));
         return rowView;
     }

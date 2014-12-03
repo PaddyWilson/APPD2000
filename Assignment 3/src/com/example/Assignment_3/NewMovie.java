@@ -26,6 +26,7 @@ public class NewMovie extends Activity {
 
 
     Intent i;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_movie);
@@ -46,14 +47,13 @@ public class NewMovie extends Activity {
             public void onClick(View view) {
                 if (title.getText().toString().equals(""))
                     Toast.makeText(NewMovie.this, "Enter A Title", Toast.LENGTH_SHORT).show();
-                else if(des.getText().toString().equals(""))
+                else if (des.getText().toString().equals(""))
                     Toast.makeText(NewMovie.this, "Enter A Description", Toast.LENGTH_SHORT).show();
-                else if(image.equals(""))
+                else if (image.equals(""))
                     Toast.makeText(NewMovie.this, "Select a image", Toast.LENGTH_SHORT).show();
-                else if(video.equals(""))
+                else if (video.equals(""))
                     Toast.makeText(NewMovie.this, "Select a triler", Toast.LENGTH_SHORT).show();
-                else
-                {
+                else {
                     Log.w("Edit Movie", "Good data ");
                     db.open();
                     db.insertMovie(title.getText().toString(), video, image, Float.toString(rating.getRating()), des.getText().toString());
@@ -67,7 +67,7 @@ public class NewMovie extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewMovie.this, imageSelect.class);
-                startActivityForResult(intent, 1 );
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -75,27 +75,22 @@ public class NewMovie extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewMovie.this, videoSelect.class);
-                startActivityForResult(intent, 2 );
+                startActivityForResult(intent, 2);
             }
         });
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent pData)
-    {
-        if ( requestCode == 1 )
-        {
-            if (resultCode == Activity.RESULT_OK )
-            {
+    protected void onActivityResult(int requestCode, int resultCode, Intent pData) {
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
                 image = pData.getExtras().getString("selectedImage");
-                InputStream is = getClass().getResourceAsStream("/assets/image/"+image);
+                InputStream is = getClass().getResourceAsStream("/assets/image/" + image);
                 imageView.setImageDrawable(Drawable.createFromStream(is, ""));
             }
         }
-        if ( requestCode == 2 )
-        {
-            if (resultCode == Activity.RESULT_OK )
-            {
+        if (requestCode == 2) {
+            if (resultCode == Activity.RESULT_OK) {
                 video = pData.getExtras().getString("selectedVideo");
             }
         }

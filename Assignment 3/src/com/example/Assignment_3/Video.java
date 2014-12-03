@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.VideoView;
 
 /**
@@ -66,20 +65,20 @@ public class Video extends Activity {
                 int duration = videoView.getDuration();
                 int currentPosition = videoView.getCurrentPosition();
                 Log.w("Video", "duration:" + duration + " postion:" + currentPosition);
-                if(currentPosition+10000 >= duration)
-                    videoView.seekTo(duration-10);
+                if (currentPosition + 10000 >= duration)
+                    videoView.seekTo(duration - 10);
                 else
-                    videoView.seekTo(currentPosition+10000);
+                    videoView.seekTo(currentPosition + 10000);
             }
         });
         rewind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int currentPosition = videoView.getCurrentPosition();
-                if(currentPosition-10000 <= 0)
+                if (currentPosition - 10000 <= 0)
                     videoView.seekTo(0);
                 else
-                    videoView.seekTo(currentPosition-10000);
+                    videoView.seekTo(currentPosition - 10000);
             }
         });
 

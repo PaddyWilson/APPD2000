@@ -1,11 +1,9 @@
 package com.example.Assignment_3;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,7 +58,7 @@ public class MovieInfo extends Activity {
         c.moveToFirst();
         name.setText(c.getString(1));//
         description.setText(c.getString(5));
-        InputStream is = getClass().getResourceAsStream("/assets/image/"+c.getString(3));//gets the image from the file
+        InputStream is = getClass().getResourceAsStream("/assets/image/" + c.getString(3));//gets the image from the file
         image.setImageDrawable(Drawable.createFromStream(is, ""));//puts the image into the image view
         rating.setRating((float) Double.parseDouble(c.getString(4)));
 

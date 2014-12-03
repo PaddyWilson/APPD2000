@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+
 import java.util.ArrayList;
 
 /**
@@ -39,8 +40,7 @@ public class videoSelect extends Activity implements OnItemClickListener {
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-    {
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("selectedVideo", movies.get(i).toString());
         setResult(Activity.RESULT_OK, resultIntent);
